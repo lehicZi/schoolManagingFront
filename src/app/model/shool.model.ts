@@ -1,5 +1,8 @@
 import {Address} from "./address.model";
 import {ClassRoom} from "./classRoom.model";
+import {Teacher} from "./teacher.model";
+import {Grade} from "./grade.model";
+import {Course} from "./course.model";
 
 export interface School{
   id:number,
@@ -8,5 +11,4 @@ export interface School{
   phoneNumber:string,
   logo:string,
   address:Address,
-  classRooms:ClassRoom[];
 }

@@ -1,43 +1,19 @@
 import { Injectable } from '@angular/core';
 import {School} from "./model/shool.model";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchoolService {
 
-  schools : School[] = [{
-    id : 1,
-    address : {
-      id :1,
-      country : "fr",
-      street : "Rue deschamps",
-      streetNumber : 25
-    },
-    logo : "logo",
-    name : "hello",
-    type : "mid school",
-    phoneNumber : "0000000000",
-    classRooms : []
-  },
-    {
-      id : 2,
-      address : {
-        id :2,
-        country : "fr",
-        street : "Chemin deschats",
-        streetNumber : 254
-      },
-      logo : "logo",
-      name : "Coucou",
-      type : "high school",
-      phoneNumber : "0000000000",
-      classRooms : []
-    }]
+  endpoint: string = "/schools"
 
-  constructor() { }
+
+  constructor(private http: HttpClient) { }
 
   findAll(){
-    return this.schools
+    return this.http.get<School[]>(`${environment.apiURL}${this.endpoint}`)
   }
 }

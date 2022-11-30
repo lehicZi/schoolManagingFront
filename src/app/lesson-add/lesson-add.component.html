@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <h2>{{getDayByIndex()}}</h2>
+</div>
+
+
+  <form *ngIf="addLessonForm" [formGroup]="addLessonForm" (ngSubmit)="addlesson()">
+    <div class="modal-body">
+      <label for="startHour">Heure de début</label>
+      <ngb-timepicker [(ngModel)]="startHourIn" [minuteStep]="30" id="startHour" formControlName="startHour"></ngb-timepicker>
+
+      <label for="endHour">Heure de fin</label>
+      <ngb-timepicker [(ngModel)]="endHourIn" [minuteStep]="30" id="endHour" formControlName="endHour"></ngb-timepicker>
+
+
+        <div *ngIf="teachers">
+          <label>Enseignant</label>
+          <select id="teacher" formControlName="teacher" [(ngModel)]="teacher" class="form-control">
+            <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{teacher.firstName}} {{teacher.lastName}}</option>
+          </select>
+        </div>
+
+      <div *ngIf="teacher">
+        <label>Matière</label>
+        <select id="course" formControlName="course" [(ngModel)]="course" class="form-control">
+          <option  *ngFor="let course of teacher.courses" [ngValue]="course">{{course.name}}</option>
+        </select>
+      </div>
+
+      <div *ngIf="course">
+        <label>Salle</label>
+        <select id="classRoom" formControlName="classRoom" [(ngModel)]="classRoom" class="form-control">
+          <option *ngFor="let room of getAllowedRooms()" [ngValue]="classRoom">{{room.name}}</option>
+        </select>
+
+      </div>
+
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger">Annuler</button>
+    <button *ngIf="classRoom" type="ngSubmit" class="btn btn-success">OK</button>
+  </div>
+</form>

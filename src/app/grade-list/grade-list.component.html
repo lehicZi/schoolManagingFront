@@ -1,0 +1,27 @@
+<ul *ngIf="grades" id="sectionList">
+  <li *ngFor="let section of getSectionList(); let index = index" id="sectionListItem">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="collapse.toggle()"
+      [attr.aria-expanded]="isCollapsedList[index]"
+      aria-controls="collapseExample"
+    >
+      {{section}}
+    </button>
+    <ul #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsedList[index]" id="nameList">
+      <div class="card">
+        <li *ngFor="let g of getNameList(section)" id="nameListItem">
+          <button
+            type="button"
+            (click)="goToCalendar(g.id)"
+            class="btn btn-outline-secondary"
+            aria-controls="collapseExample"
+          >
+            {{section}} {{g.name}}
+          </button>
+        </li>
+      </div>
+    </ul>
+  </li>
+</ul>

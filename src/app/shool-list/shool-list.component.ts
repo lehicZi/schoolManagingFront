@@ -14,7 +14,7 @@ export class ShoolListComponent implements OnInit {
   constructor(private ss : SchoolService) { }
 
   ngOnInit(): void {
-    this.schools = this.ss.findAll()
+    this.ss.findAll().subscribe(v => this.schools = v)
   }
 
 }

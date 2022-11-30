@@ -1,4 +1,5 @@
 import {Grade} from "./grade.model";
+import {Course} from "./course.model";
 
 export interface Teacher{
   id:number,
@@ -6,4 +7,5 @@ export interface Teacher{
   lastName:string,
   birthDate:string
   mainGrade:Grade
+  courses:Course[]
 }

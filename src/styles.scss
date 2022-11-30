@@ -1,5 +1,10 @@
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
 body{
   width: 1200px;
   margin: 0px auto;
   font-family: sans-serif;
+  display: flex;
+  justify-items: center;
 }
