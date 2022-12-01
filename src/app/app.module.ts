@@ -16,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import {NgbModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { LessonAddComponent } from './lesson-add/lesson-add.component';
+import { MenuComponent } from './menu/menu.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -39,7 +40,8 @@ const routes: Routes = [
     ShoolListComponent,
     CalendarComponent,
     GradeListComponent,
-    LessonAddComponent
+    LessonAddComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

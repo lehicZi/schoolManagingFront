@@ -1,2 +1,5 @@
+<app-menu></app-menu>
 <h3 *ngIf="grade">{{grade.section}} {{grade.name}}</h3>
-<full-calendar [options]="calendarOptions"></full-calendar>
+<div *ngIf="initialEvents">
+  <full-calendar  [options]="calendarOptions"></full-calendar>
+</div>

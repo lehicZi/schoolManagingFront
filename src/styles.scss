@@ -5,6 +5,19 @@ body{
   width: 1200px;
   margin: 0px auto;
   font-family: sans-serif;
-  display: flex;
-  justify-items: center;
+
+  justify-content: center;
+  background-color:#017e7a;
+}
+
+.fc .fc-col-header-cell-cushion{
+  color: #e4de9b;
+  text-decoration: none;
+}
+.fc .fc-timegrid-slot-label-cushion {
+  color: #e4de9b;
+}
+.fc-today
+{
+  background-color:pink;
 }

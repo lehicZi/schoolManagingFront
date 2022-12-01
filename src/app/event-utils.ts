@@ -26,3 +26,7 @@ export const INITIAL_EVENTS: EventInput[] = [
 export function createEventId() {
   return String(eventGuid++);
 }
+
+export function parseString(date: string){
+  return new String(date).slice(0,19)
+}

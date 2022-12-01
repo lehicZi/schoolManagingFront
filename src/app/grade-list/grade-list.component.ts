@@ -24,7 +24,8 @@ export class GradeListComponent implements OnInit {
     this.schoolId = this.route.snapshot.paramMap.get("shcoolid");
     this.gradeService.findBySchool(this.schoolId).subscribe(v => {
       this.grades = v
-      this.isCollapsedList =  Array(this.getSectionList().size)
+      this.isCollapsedList = Array(this.getSectionList().size).fill(true)
+
     })
   }
 

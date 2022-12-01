@@ -1,8 +1,9 @@
+<app-menu></app-menu>
 <ul *ngIf="grades" id="sectionList">
   <li *ngFor="let section of getSectionList(); let index = index" id="sectionListItem">
     <button
       type="button"
-      class="btn btn-outline-primary"
+      class="sectionBtn btn btn-outline-primary"
       (click)="collapse.toggle()"
       [attr.aria-expanded]="isCollapsedList[index]"
       aria-controls="collapseExample"
@@ -15,7 +16,7 @@
           <button
             type="button"
             (click)="goToCalendar(g.id)"
-            class="btn btn-outline-secondary"
+            class="btn btn-outline-secondary nameBtn"
             aria-controls="collapseExample"
           >
             {{section}} {{g.name}}

@@ -1,14 +1,39 @@
 #sectionListItem{
-  display: inline;
   list-style-type: none;
   margin : 10px;
+  display: flex;
+  flex-direction: column;
 }
-
 #nameList{
   margin:10px;
+  padding-left: 0;
 }
 
 #nameListItem{
-  list-style-type: none;
   margin : 10px;
+  padding-left: 0;
+  list-style-type: none;
+  display: inline;
+}
+
+#sectionList{
+  text-align: center;
+}
+
+button{
+  background-color: #e4de9b;
+  color: black;
+}
+
+.sectionBtn{
+  border-color: black;
+}
+
+.sectionBtn:hover{
+  background-color: #05504c;
+}
+
+div{
+  background-color: #65b3af;
+  border: #e4de9b solid 2px;
 }

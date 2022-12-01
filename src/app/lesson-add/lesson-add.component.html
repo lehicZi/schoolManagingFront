@@ -3,8 +3,13 @@
 </div>
 
 
-  <form *ngIf="addLessonForm" [formGroup]="addLessonForm" (ngSubmit)="addlesson()">
+<form *ngIf="addLessonForm" [formGroup]="addLessonForm" (ngSubmit)="addLesson()">
     <div class="modal-body">
+
+      <p><span *ngIf="course">Cours de {{course.name}} </span>
+        <span *ngIf="course && teacher">avec {{teacher.firstName}} {{teacher.lastName}} </span>
+        <span *ngIf="classRoom">en salle {{classRoom.name}}</span></p>
+
       <label for="startHour">Heure de début</label>
       <ngb-timepicker [(ngModel)]="startHourIn" [minuteStep]="30" id="startHour" formControlName="startHour"></ngb-timepicker>
 
@@ -22,23 +27,21 @@
       <div *ngIf="teacher">
         <label>Matière</label>
         <select id="course" formControlName="course" [(ngModel)]="course" class="form-control">
-          <option  *ngFor="let course of teacher.courses" [ngValue]="course">{{course.name}}</option>
+          <option *ngFor="let course of teacher.courses" [ngValue]="course">{{course.name}}</option>
         </select>
       </div>
 
-      <div *ngIf="course">
+      <div *ngIf="course && classRooms">
         <label>Salle</label>
         <select id="classRoom" formControlName="classRoom" [(ngModel)]="classRoom" class="form-control">
-          <option *ngFor="let room of getAllowedRooms()" [ngValue]="classRoom">{{room.name}}</option>
+          <option *ngFor="let room of getAllowedRooms()" [ngValue]="room">{{room.name}}</option>
         </select>
-
       </div>
-
-
-  </div>
+    </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger">Annuler</button>
+    <button type="button" class="btn btn-secondary" (click)="close()">Annuler</button>
+    <button type="button" class="btn btn-danger" (click)="deleteLesson()">Supprimer</button>
     <button *ngIf="classRoom" type="ngSubmit" class="btn btn-success">OK</button>
   </div>
 </form>

@@ -1,0 +1,4 @@
+<ul>
+  <li [routerLink]="'/'">Choix de l'établissement</li>
+  <li *ngIf="schoolId" (click)="goToGradeList()">Choix de la classe</li>
+</ul>
