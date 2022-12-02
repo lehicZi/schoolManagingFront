@@ -29,6 +29,7 @@ export class LessonAddComponent implements OnInit {
   teacher! : Teacher
   classRoom! : ClassRoom
   course! :Course
+  canDelete! : boolean
 
   teachers! : Teacher[]
   classRooms! : ClassRoom[]

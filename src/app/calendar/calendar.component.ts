@@ -101,6 +101,11 @@ export class CalendarComponent implements OnInit {
         this.lessonToAdd = result
         console.log(this.lessonToAdd);
 
+        if (this.lessonToAdd.course.color.includes('0x')){
+          this.lessonToAdd.course.color = this.lessonToAdd.course.color.replace('0x', '#')
+
+        }
+
         calendarApi.addEvent({
           id: createEventId(),
           title: `${this.lessonToAdd.course.name} avec ${this.lessonToAdd.teacher.firstName} ${this.lessonToAdd.teacher.lastName} en salle ${this.lessonToAdd.classRoom.name}`,
@@ -127,7 +132,7 @@ export class CalendarComponent implements OnInit {
     modalRef.componentInstance.teacher = clickInfo.event.extendedProps['lesson'].teacher
     modalRef.componentInstance.course = clickInfo.event.extendedProps['lesson'].course
     modalRef.componentInstance.classRoom = clickInfo.event.extendedProps['lesson'].classRoom
-
+    modalRef.componentInstance.canDelete = true;
     modalRef.result.then((result) => {
       if (result) {
         if(typeof result == "boolean"){
@@ -135,6 +140,11 @@ export class CalendarComponent implements OnInit {
         }
         else {
           this.lessonToAdd = result
+
+          if (this.lessonToAdd.course.color.includes('0x')){
+            this.lessonToAdd.course.color = this.lessonToAdd.course.color.replace('0x', '#')
+
+          }
 
           clickInfo.event.setStart(this.lessonToAdd.startHour)
           clickInfo.event.setEnd(this.lessonToAdd.endHour)

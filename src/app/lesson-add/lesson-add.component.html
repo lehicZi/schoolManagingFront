@@ -41,7 +41,7 @@
 
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="close()">Annuler</button>
-    <button type="button" class="btn btn-danger" (click)="deleteLesson()">Supprimer</button>
+    <button *ngIf="canDelete" type="button" class="btn btn-danger" (click)="deleteLesson()">Supprimer</button>
     <button *ngIf="classRoom" type="ngSubmit" class="btn btn-success">OK</button>
   </div>
 </form>
