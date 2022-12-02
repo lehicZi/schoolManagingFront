@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
   CalendarOptions,
   DateSelectArg, EventAddArg,
@@ -15,6 +15,8 @@ import {LessonAddComponent} from "../lesson-add/lesson-add.component";
 import {ActivatedRoute} from "@angular/router";
 import {Lesson} from "../model/lesson.model";
 import {LessonService} from "../lesson.service";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-calendar',
@@ -67,6 +69,8 @@ export class CalendarComponent implements OnInit {
   grade! : Grade;
 
   lessonToAdd!: Lesson
+
+  @ViewChild('contentPdf') content!: ElementRef;
 
   constructor(private gradeService : GradeService, private modalService: NgbModal, private route: ActivatedRoute,
               private lessonService: LessonService) { }
@@ -172,6 +176,10 @@ export class CalendarComponent implements OnInit {
       for (let lesson of value){
         lesson.startHour = new Date(lesson.startHour)
         lesson.endHour = new Date(lesson.endHour)
+        if (lesson.course.color.includes('0x')){
+          lesson.course.color = lesson.course.color.replace('0x', '#')
+
+        }
         this.initialEvents.push({
           id: createEventId(),
           title: `${lesson.course.name} avec ${lesson.teacher.firstName} ${lesson.teacher.lastName} en salle ${lesson.classRoom.name}`,
@@ -186,6 +194,19 @@ export class CalendarComponent implements OnInit {
       this.calendarOptions.initialEvents = this.initialEvents
     })
 
+  }
+
+  public savePDF(): void {
+    let DATA: any = document.getElementById('contentPdf');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save(`emploi-du-temps-${this.grade.section}${this.grade.name}.pdf`);
+    });
   }
 
 }
